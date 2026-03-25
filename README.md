@@ -8,9 +8,48 @@
 PC installed with SCILAB. 
 
 # PROGRAM: 
+```
+clc;
+clear;
+close;
+n = 0:%pi/50:2*%pi;
+x = sin(%pi*n);   // original signal
+M = input("Enter the downsampling factor M = ");
+L = input("Enter the upsampling factor L = ");
+downsampling_x = x(1:M:length(x));
+disp("Input signal x(n) = ");
+disp(x);
+disp("Downsampled Signal = ");
+disp(downsampling_x);
+figure(1);
+subplot(2,1,1);
+plot2d3(1:length(x), x);
+xtitle("Original Signal");
+subplot(2,1,2);
+plot2d3(1:length(downsampling_x), downsampling_x);
+xtitle("Downsampled Signal by factor M");
+upsampling_x = zeros(1, L*length(x));
+for i = 1:length(x)
+    upsampling_x(1, L*(i-1)+1) = x(i);
+end
+disp("Upsampled Signal = ");
+disp(upsampling_x);
+figure(2);
+subplot(2,1,1);
+plot2d3(1:length(x), x);
+xtitle("Original Signal");
+
+subplot(2,1,2);
+plot2d3(1:length(upsampling_x), upsampling_x);
+xtitle("Upsampled Signal by factor L");
+```
 
 
-# OUTPUT: 
+# OUTPUT:
+<img width="762" height="705" alt="image" src="https://github.com/user-attachments/assets/bd0a9179-fd23-4bc0-bdc1-f61c63822cb8" />
+<img width="759" height="715" alt="image" src="https://github.com/user-attachments/assets/32d2091c-33de-415a-b0c3-b7d0f90dfe82" />
+
+
 
 
 # RESULT: 
